@@ -33,27 +33,37 @@ class AppClient {
   public static readonly actionKey: string = 'appkey'
   public static readonly device: string = 'android'
   // bilibili 客户端
+  protected static readonly __loginSecretKey: string = '60698ba2f68e01ce44738920a0ffe768'
+  public static readonly loginAppKey: string = 'bca7e84c2d947ac6'
   private static readonly __secretKey: string = '560c52ccd288fed045859ed18bffd973'
   public static readonly appKey: string = '1d8b6e7d45233436'
   public static readonly build: string = '5500300'
   public static readonly mobiApp: string = 'android'
   public static readonly platform: string = 'android'
   // bilibili 国际版
+  // protected static readonly __loginSecretKey: string = 'c75875c596a69eb55bd119e74b07cfe3'
+  // public static readonly loginAppKey: string = 'ae57252b0c09105d'
   // private static readonly __secretKey: string = '36efcfed79309338ced0380abd824ac1'
   // public static readonly appKey: string = 'bb3101000e232e27'
   // public static readonly build: string = '112000'
   // public static readonly mobiApp: string = 'android_i'
   // bilibili 概念版
+  // protected static readonly __loginSecretKey: string = '34381a26236dd1171185c0beb042e1c6'
+  // public static readonly loginAppKey: string = '178cf125136ca8ea'
   // private static readonly __secretKey: string = '25bdede4e1581c836cab73a48790ca6e'
   // public static readonly appKey: string = '07da50c9a0bf829f'
   // public static readonly build: string = '591204'
   // public static readonly mobiApp: string = 'android_b'
   // bilibili TV
+  // protected static readonly __loginSecretKey: string = '59b43e04ad6965f34319062b478f83dd'
+  // public static readonly loginAppKey: string = '4409e2ce8ffd12b8'
   // private static readonly __secretKey: string = '59b43e04ad6965f34319062b478f83dd'
   // public static readonly appKey: string = '4409e2ce8ffd12b8'
   // public static readonly build: string = '140600'
   // public static readonly mobiApp: string = 'android_tv'
   // bilibili link
+  // protected static readonly __loginSecretKey: string = '60698ba2f68e01ce44738920a0ffe768'
+  // public static readonly loginAppKey: string = 'bca7e84c2d947ac6'
   // private static readonly __secretKey: string = 'e988e794d4d4b6dd43bc0e89d6e90c43'
   // public static readonly appKey: string = '37207f2beaebf8d7'
   // public static readonly build: string = '3900007'
@@ -266,7 +276,8 @@ class AppClient {
     const authQuery = `username=${encodeURIComponent(this.userName)}&password=${passWord}${captcha}`
     const auth: request.Options = {
       method: 'POST',
-      uri: 'https://passport.bilibili.com/api/v2/oauth2/login',
+      //uri: 'https://passport.bilibili.com/api/v2/oauth2/login',
+	  uri: 'https://passport.bilibili.com/api/v3/oauth2/login',
       body: AppClient.signQueryBase(authQuery),
       jar: this.__jar,
       json: true,
