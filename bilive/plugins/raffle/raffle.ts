@@ -202,7 +202,7 @@ class Raffle extends EventEmitter {
     }
     tools.XHR<pkLotteryReward>(reward).then(pkReward => {
       if (pkReward !== undefined && pkReward.response.statusCode === 200) {
-        if (pkReward.body.code === 0 && pkReward.body.data.award_text.includes('辣条X')) {
+        if (pkReward.body.code === 0 && pkReward.body.data.award_text.includes('X')) {
           let data = pkReward.body.data
           this.emit('msg', {
             cmd: 'earn',
@@ -210,11 +210,19 @@ class Raffle extends EventEmitter {
               uid: this._user.uid,
               nickname: this._user.nickname,
               type: 'pklottery',
-              name: '辣条',
-              num: 1
+              name: 'data.award_text.substr(0,data.award_text.indexOf('X'))',
+              num: data.award_num
             }
           })
           tools.Log(this._user.nickname, title, id, '获得', data.award_text)
+         /**  
+          * 除辣条外的中奖通知，目前已知有金瓜子奖项
+          if (data.award_text.substr(0,data.award_text.indexOf('X')) != '辣条') tools.emit('systemMSG', <systemMSG>{
+            message: `${this._user.nickname} ${title} ${id} 获得 ${data.award_text}`,
+            options: this._options,
+            user: this._user
+        })
+        */
         }
         else tools.Log(this._user.nickname, title, id, pkReward.body)
       }
